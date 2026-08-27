@@ -259,10 +259,10 @@ body {
 
 /* Slanted Accent Top-Right Cutout */
 .header-accent {
-  width: 0;
-  height: 0;
-  border-bottom: 120px solid #ff6c00;
-  border-left: 120px solid transparent;
+  width: 100px; /* Adjust width of triangle base as desired */
+  height: 100%; /* Spans exact header height automatically */
+  background-color: #ff6c00;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
   position: absolute;
   right: 0;
   top: 0;
@@ -620,7 +620,7 @@ body {
 }
 
 .course-hover-overlay .info-item {
-  font-size: 13px;
+  font-size: clamp(9px, 1vw, 14px);
   margin: 3px 0;
   display: flex;
   align-items: center;
@@ -656,13 +656,21 @@ body {
   position: relative;
   background: transparent;
   padding: 10px 0;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0; 
+  white-space: nowrap;
 }
 
 .marquee-track {
   display: flex;
   gap: 20px;
   width: max-content;
-  animation: scrollRightToLeft 18s linear infinite;
+  animation: scrollRightToLeft 24s linear infinite;
+  
+  /* Enables GPU Hardware Acceleration for ultra-smooth rendering */
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* Only pause scrolling on actual mouse hover (fixes touch-pause bug on mobile) */
@@ -687,16 +695,25 @@ body {
   font-size: 13px;
   color: #4a5568;
   flex-shrink: 0;
+  flex-direction: row;
+  white-space: nowrap;
 }
 
-.uni-card i {
-  font-size: 24px;
-  color: #4a4ebc;
+/* Updated: Image logo replacing the old icon rule */
+.uni-card .uni-logo {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
 }
 
+/* Consolidated smooth 3D transform animation */
 @keyframes scrollRightToLeft {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-190px * 5 - 20px * 5)); }
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 /* ==========================================================================
