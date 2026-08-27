@@ -1,0 +1,876 @@
+/* ==========================================================================
+   REVIEWS SECTION STYLES (ELFSIGHT OVERRIDES)
+   ========================================================================== */
+.reviews-section {
+  background: #ffffff;
+  padding: 50px 30px;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.reviews-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.reviews-title {
+  font-size: clamp(22px, 3.5vw, 28px);
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 6px;
+}
+
+.reviews-subtitle {
+  font-size: 14px;
+  color: #718096;
+  margin-bottom: 30px;
+}
+
+/* Elfsight Wrapper Responsive Adjustments */
+[class*="elfsight-app-"] {
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .reviews-section {
+    padding: 35px 16px;
+  }
+}
+
+/* ==========================================================================
+   FORM MODAL OVERLAY & CROSS BUTTON STYLES
+   ========================================================================== */
+.form-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: 16px;
+}
+
+.form-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal box container adjustment */
+.modal-form-box {
+  position: relative;
+  transform: translateY(-20px) scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.form-modal-overlay.active .modal-form-box {
+  transform: translateY(0) scale(1);
+}
+
+/* Cross / Close (X) Button */
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: rgba(0, 0, 0, 0.15);
+  border: none;
+  color: #1a2536;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 108, 0, 0.8);
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+/* ==========================================================================
+   CONFIRMATION MODAL STYLES
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-card {
+  background: #ffffff;
+  width: 90%;
+  max-width: 320px;
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: scale(0.8);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-overlay.active .modal-card {
+  transform: scale(1);
+}
+
+.modal-icon {
+  width: 48px;
+  height: 48px;
+  background: #22c55e;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px auto;
+}
+
+.modal-card h4 {
+  font-size: 18px;
+  color: #1a202c;
+  margin-bottom: 6px;
+  font-weight: 700;
+}
+
+.modal-card p {
+  font-size: 13px;
+  color: #4a5568;
+  line-height: 1.4;
+  margin-bottom: 18px;
+}
+
+.btn-modal {
+  background: #4a4ebc;
+  color: #ffffff;
+  border: none;
+  padding: 10px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn-modal:hover {
+  background: #3b3f99;
+}
+
+/* ==========================================================================
+   1. BASE RESET & SYSTEM UTILITIES
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-tap-highlight-color: transparent; /* Smooth touch behavior on iOS/Android */
+}
+
+html {
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #f4f5f7;
+  color: #333;
+  min-height: 100vh;
+  /* Support for modern notch safe-areas (iPhone/Android) */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Main Container Wrapper */
+.landing-container {
+  margin: 0 auto;
+  max-width: 1520px;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ==========================================================================
+   2. HEADER SECTION & ACCENT CUTOUT
+   ========================================================================== */
+.header {
+  background: #4a4ebc;
+  min-height: 100px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  position: relative;
+  overflow: hidden; /* Clips slanted accent border cleanly */
+}
+
+.brand-logo {
+  color: #ffffff;
+  font-size: clamp(18px, 4vw, 24px);
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 2;
+}
+
+/* Slanted Accent Top-Right Cutout */
+.header-accent {
+  width: 0;
+  height: 0;
+  border-bottom: 120px solid #ff6c00;
+  border-left: 120px solid transparent;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   3. HERO SECTION & FORM
+   ========================================================================== */
+.hero {
+  position: relative;
+  background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
+              url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  gap: 24px;
+}
+
+.hero-badge-card {
+  background: rgba(255, 255, 255, 0.95);
+  width: 50%;
+  min-height: 240px;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.hero-badge-card h3 {
+  font-size: clamp(18px, 2.5vw, 22px);
+  color: #4a4ebc;
+  margin-bottom: 10px;
+}
+
+.hero-badge-card p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.hero-badge-card .feature-list {
+  margin-top: 15px;
+  list-style: none;
+}
+
+.hero-badge-card .feature-list li {
+  font-size: 13px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #222;
+  font-weight: 500;
+}
+
+.hero-badge-card .feature-list li i {
+  color: #ff6c00;
+}
+
+/* Lead Form Box */
+.lead-form-box {
+  background: rgba(86, 196, 235, 0.88);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  width: 320px;
+  max-width: 100%;
+  padding: 25px 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.lead-form-box h3 {
+  font-size: 20px;
+  color: #1a2536;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.lead-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #e2e8f0;
+  font-size: 16px; /* 16px font prevents auto-zoom on iOS inputs */
+  outline: none;
+}
+
+.input-field:focus {
+  background: #ffffff;
+  box-shadow: 0 0 0 2px #4a4ebc;
+}
+
+.btn-submit {
+  background: #ff6c00;
+  color: #ffffff;
+  border: none;
+  padding: 14px;
+  min-height: 48px; /* Standard mobile touch-target size */
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-submit:hover {
+  background: #e05f00;
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   4. ANNOUNCEMENT BANNER & SLIDER
+   ========================================================================== */
+.cashback-banner {
+  background: #4a4ebc;
+  color: #ffffff;
+  padding: 16px 0;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.announcement-slider {
+  width: 100%;
+  overflow: hidden;
+}
+
+.announcement-track {
+  display: flex;
+  width: 500%;
+  animation: slideLeftToRight 15s ease-in-out infinite;
+}
+
+/* Pause announcement only on true pointer hover (desktop) */
+@media (hover: hover) {
+  .announcement-track:hover {
+    animation-play-state: paused;
+  }
+}
+
+.announcement-item {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.announcement-item i {
+  color: #ff6c00;
+  font-size: 1.2em;
+}
+
+@keyframes slideLeftToRight {
+  0%, 16% { transform: translateX(-80%); }
+  20%, 36% { transform: translateX(-60%); }
+  40%, 56% { transform: translateX(-40%); }
+  60%, 76% { transform: translateX(-20%); }
+  80%, 96% { transform: translateX(0%); }
+  100% { transform: translateX(-80%); }
+}
+
+/* ==========================================================================
+   5. COURSES GRID SECTION
+   ========================================================================== */
+
+/* Section & Container Background */
+  .courses-section {
+    background-color: #f8fafc;
+    padding: 60px 20px;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+
+  .courses-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Main Section Title */
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 48px;
+    letter-spacing: -0.025em;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #4f46e5, #06b6d4);
+    margin: 12px auto 0;
+    border-radius: 2px;
+  }
+
+  /* Group Wrapper */
+  .category-group {
+    background: #1a2536;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin-bottom: 36px;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+  }
+
+  /* Category Headers */
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f1f5f9;
+  }
+
+  .category-badge-icon {
+    font-size: 1.25rem;
+    color: #4f46e5;
+    background: #eeefff;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .category-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #f4f5f7;
+    margin: 0;
+  }
+
+.section-container {
+  background: #e3e6eb;
+  padding: 40px 30px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: clamp(20px, 3.5vw, 26px);
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 30px;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.course-card {
+  background: #ffffff;
+  border-radius: 10px;
+  min-height: 140px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  text-align: center;
+  cursor: pointer;
+
+  /* Animation initial hidden state */
+  opacity: 0;
+  transform: translateY(45px) scale(0.8);
+  transition: opacity 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              box-shadow 0.3s ease;
+  will-change: opacity, transform;
+}
+
+.course-card.pop-in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.course-card.pop-in:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+.course-icon {
+  font-size: 24px;
+  color: #4a4ebc;
+  margin-bottom: 6px;
+}
+
+.course-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2d3748;
+  line-height: 1.2;
+}
+
+/* Overlay for Course Details */
+.course-hover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(74, 78, 188, 0.95);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  text-align: center;
+}
+
+.course-card:hover .course-hover-overlay,
+.course-card:focus .course-hover-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+.course-hover-overlay .info-item {
+  font-size: 13px;
+  margin: 3px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.course-hover-overlay .info-item i {
+  color: #ff6c00;
+}
+
+.btn-apply-mini {
+  margin-top: 8px;
+  background: #ff6c00;
+  color: #fff;
+  font-size: 16px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   6. PARTNER UNIVERSITIES MARQUEE (INFINITE SCROLL)
+   ========================================================================== */
+.universities-section {
+  margin-top: 50px;
+}
+
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+  padding: 10px 0;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: scrollRightToLeft 18s linear infinite;
+}
+
+/* Only pause scrolling on actual mouse hover (fixes touch-pause bug on mobile) */
+@media (hover: hover) {
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+}
+
+.uni-card {
+  background: #ffffff;
+  width: 190px;
+  height: 75px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+  font-size: 13px;
+  color: #4a5568;
+  flex-shrink: 0;
+}
+
+.uni-card i {
+  font-size: 24px;
+  color: #4a4ebc;
+}
+
+@keyframes scrollRightToLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-190px * 5 - 20px * 5)); }
+}
+
+/* ==========================================================================
+   7. FOOTER STATS BAR
+   ========================================================================== */
+.footer-stats {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 25px 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  gap: 20px;
+}
+
+.stat-item {
+  text-align: left;
+}
+
+.stat-number {
+  font-size: clamp(18px, 2.5vw, 22px);
+  font-weight: 800;
+  color: #38bdf8;
+  display: block;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 500;
+  margin-top: 2px;
+}
+
+/* Footer Bottom-Right Accent Cutout */
+.footer-accent {
+  width: 0;
+  height: 0;
+  border-bottom: 90px solid #ff6c00;
+  border-left: 110px solid transparent;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+/* ==========================================================================
+   8. RESPONSIVE BREAKPOINTS (TABLETS & MOBILE SMARTPHONES)
+   ========================================================================== */
+/* Tablets / iPads (Portrait & Landscape: <= 1024px) */
+@media (max-width: 1024px) {
+  .hero {
+    padding: 30px;
+  }
+
+  .hero-badge-card {
+    width: 55%;
+  }
+
+  .courses-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .stats-container {
+    width: 85%;
+  }
+}
+
+/* Mobile Devices (Smartphones & Foldables: <= 768px) */
+@media (max-width: 768px) {
+  .header {
+    min-height: 80px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Scaled cutout dimensions to align with mobile header height */
+  .header-accent {
+    border-bottom-width: 80px;
+    border-left-width: 80px;
+  }
+
+  .hero {
+    flex-direction: column;
+    padding: 24px 16px;
+    min-height: auto;
+  }
+
+  .hero-badge-card, 
+  .lead-form-box {
+    width: 100%;
+  }
+
+  .courses-grid {
+    grid-template-columns: repeat(2, 1fr); /* Fits 2 course cards per line */
+    gap: 10px;
+  }
+
+  .course-card {
+    min-height: 100px; /* Scaled down card height */
+    padding: 10px 6px;
+  }
+
+  .course-icon {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  .course-title {
+    font-size: 11px;
+  }
+
+  .btn-apply-mini {
+    padding: 3px 8px;
+    font-size: 10px;
+  }
+
+  .section-container {
+    padding: 30px 16px;
+  }
+
+  .footer-stats {
+    padding: 25px 16px;
+  }
+
+  .stats-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .footer-accent {
+    border-bottom-width: 60px;
+    border-left-width: 70px;
+  }
+}
+
+/* Small Smartphone Displays (<= 480px) */
+@media (max-width: 480px) {
+  .header {
+    min-height: 70px;
+  }
+
+  .header-accent {
+    border-bottom-width: 70px;
+    border-left-width: 70px;
+  }
+
+  .courses-grid {
+    grid-template-columns: repeat(2, 1fr); /* Keeps 2 per row even on extra small screens */
+    gap: 8px;
+  }
+
+  .lead-form-box {
+    padding: 20px 15px;
+  }
+
+  .btn-submit {
+    font-size: 14px;
+  }
+}
+
+/* Touchscreen Interaction Overrides */
+@media (hover: none) and (pointer: coarse) {
+  .course-card:active .course-hover-overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+}
