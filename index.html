@@ -82,15 +82,19 @@
     margin-left: 8px;
     max-width: 140px; /* Forces wrap on mobile to avoid pushing out UI elements */
   }
+
+  .responsive-logo {
+  height: clamp(32px, 5vw, 60px); /* Dynamically scales between 32px and 60px based on screen width */
+  width: auto; /* Maintains proportional aspect ratio */
+  max-width: 100%; /* Keeps image within its parent container on small screens */
+  object-fit: contain;
+  display: block;
+}
 </style>
 
 <header class="header">
   <div class="brand-logo">
-    <i class="fa-solid fa-graduation-cap"></i>
-    <div class="brand-text-container">
-      <span class="brand-name-primary">EXE</span>
-      <span class="brand-tag">LEARN</span>
-    </div>
+    <img src="images/exe-learnlogo.png" alt="Exelearn Logo" class="responsive-logo">
     <span class="header-tagline">Learn anytime and anywhere</span>
   </div>
   <div class="header-accent"></div>
@@ -562,70 +566,57 @@
 
     <!-- Footer Stats Bar -->
 <style>
-  /* Updated Stats Styling */
-  .footer-stats .stats-container {
+  /* Main Container: Stacks vertically on mobile, row on tablet/desktop */
+  .footer-main-content {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 24px;
+    flex-direction: column; /* Mobile first: Brand above Contact */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 30px 20px;
     font-family: system-ui, -apple-system, sans-serif;
   }
 
-  .footer-stats .stat-item {
+  /* Footer Brand & Tagline */
+  .footer-brand {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    text-align: center;
+    gap: 10px;
+    margin-bottom: 12px;
   }
 
-  .footer-stats .stat-number {
-    font-size: 2.2rem;
+  .brand-icon {
+    font-size: 1.8rem;
+    color: #38bdf8;
+  }
+
+  .brand-title {
+    font-size: 1.5rem;
     font-weight: 800;
-    letter-spacing: -0.02em;
-    background: linear-gradient(135deg, #60a5fa 0%, #38bdf8 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1.2;
-    margin-bottom: 4px;
-  }
-
-  .footer-stats .stat-label {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #94a3b8;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  /* Gradient Separator Line */
-  .footer-divider {
-    max-width: 1200px;
-    height: 1px;
-    margin: 10px auto;
-    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0) 100%);
-    border: none;
-  }
-
-  /* Footer Contact Section */
-  .footer-contact-section {
-    padding: 30px 20px 20px;
     color: #ffffff;
-    font-family: system-ui, -apple-system, sans-serif;
+    margin: 0;
   }
 
-  .footer-contact-container {
-    max-width: 1200px;
-    margin: 0 auto;
+  .brand-title span {
+    color: #38bdf8;
+    display: block; /* Matches image stacking for "Edutech" */
   }
 
+  .company-tagline {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 450px;
+  }
+
+  /* Contact Section Styles */
   .contact-title {
     font-size: 1.25rem;
     font-weight: 800;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    margin-bottom: 24px;
+    margin: 0 0 16px 0;
     color: #ffffff;
     display: inline-block;
     border-bottom: 2px solid rgba(255, 255, 255, 0.2);
@@ -636,7 +627,6 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-bottom: 24px;
   }
 
   .contact-item {
@@ -665,65 +655,42 @@
     color: #ffffff;
   }
 
-  /* Circular Social Buttons */
-  .social-links {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-top: 24px;
-  }
+  /* Tablet and Laptop/Desktop Layout */
+  @media (min-width: 768px) {
+    .footer-main-content {
+      flex-direction: row; /* Horizontal layout on larger screens */
+      justify-content: space-between;
+      align-items: flex-start;
+    }
 
-  .social-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: 1.5px solid rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-  }
-
-  .social-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: #ffffff;
-    transform: translateY(-2px);
+    .footer-intro-container,
+    .footer-contact-container {
+      flex: 1;
+    }
   }
 </style>
 
 <footer class="footer-stats">
-  
-<div class="footer-intro-container">
-  <!-- Logo Header -->
-  <div class="footer-brand">
-    <i class="fa-solid fa-graduation-cap brand-icon"></i>
-    <h3 class="brand-title">ExeLearn <span>Edutech</span></h3>
-  </div>
+  <div class="footer-main-content">
+    <!-- Top on Mobile / Left on Desktop -->
+    <div class="footer-intro-container">
+      <div class="footer-brand">
+        <i class="fa-solid fa-graduation-cap brand-icon"></i>
+        <h3 class="brand-title">ExeLearn <span>Edutech</span></h3>
+      </div>
+      <p class="company-tagline">
+        Your trusted gateway to top private university admissions. Empowering students with seamless application support, expert guidance, and bright futures.
+      </p>
+    </div>
 
-  <!-- Tagline / Mission -->
-  <p class="company-tagline">
-    Your trusted gateway to top private university admissions. Empowering<br> students with seamless application support, expert guidance, and bright futures.
-  </p>
-
-</div>
-
-  <!-- Separator Divider -->
-  <hr class="footer-divider" />
-
-  <!-- Contact Info Section -->
-  <div class="footer-contact-section">
+    <!-- Bottom on Mobile / Right on Desktop -->
     <div class="footer-contact-container">
-      <h4 class="contact-title">Contact Info</h4>
-      
+      <h4 class="contact-title">Contact</h4>
       <div class="contact-list">
         <div class="contact-item">
           <i class="fa-solid fa-location-dot contact-icon"></i>
           <span>69 Garfa Main Road</span>
         </div>
-        
         <div class="contact-item">
           <i class="fa-regular fa-envelope contact-icon"></i>
           <span>
@@ -731,7 +698,6 @@
             <a href="mailto:info.exelearn@gmail.com">info.exelearn@gmail.com</a>
           </span>
         </div>
-        
         <div class="contact-item">
           <i class="fa-solid fa-phone contact-icon"></i>
           <a href="tel:+917439743516">+91 74397 43516</a>
@@ -739,6 +705,7 @@
       </div>
     </div>
   </div>
+</footer>
 
   <div class="footer-accent"></div>
 </footer>
