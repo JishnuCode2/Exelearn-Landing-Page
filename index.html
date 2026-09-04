@@ -18,6 +18,8 @@
   /* Base Reset & Variables */
   * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   /* Fixed Header Container */
@@ -26,7 +28,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #3b42c4; /* Blue background matching your screenshots */
+    background-color: #3b42c4; /* Blue background matching design */
     padding: 16px 20px;
     min-height: 80px;
     overflow: hidden; /* Clips top-right triangle overlay cleanly */
@@ -37,18 +39,19 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    flex-wrap: wrap; /* Keeps text legible on small Android screens */
+    flex-wrap: wrap; /* Keeps text legible on small screens */
     z-index: 2; /* Keeps text rendered above the accent layer */
   }
 
   .brand-logo i {
     font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: #00b4d8;
   }
 
   .brand-text-container {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     font-family: system-ui, -apple-system, Roboto, sans-serif;
   }
 
@@ -57,7 +60,7 @@
     font-size: clamp(1.5rem, 5vw, 2.2rem);
     font-weight: 800;
     letter-spacing: -0.02em;
-    color: #0f172a;
+    color: #ffffff;
     line-height: 1;
   }
 
@@ -66,7 +69,7 @@
     display: inline-block;
     background: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
     color: #ffffff;
-    font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
     font-weight: 800;
     letter-spacing: 0.05em;
     padding: 4px 8px;
@@ -81,21 +84,30 @@
     line-height: 1.2;
     margin-left: 8px;
     max-width: 140px; /* Forces wrap on mobile to avoid pushing out UI elements */
+    color: #e0e7ff;
   }
 
-  .responsive-logo {
-  height: clamp(32px, 5vw, 60px); /* Dynamically scales between 32px and 60px based on screen width */
-  width: auto; /* Maintains proportional aspect ratio */
-  max-width: 100%; /* Keeps image within its parent container on small screens */
-  object-fit: contain;
-  display: block;
-}
+  /* Accent Triangle Overlay on the Right */
+  .header-accent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 80px 80px 0;
+    border-color: transparent #ff6b00 transparent transparent; /* Decorative orange accent */
+    z-index: 1;
+  }
 </style>
 
 <header class="header">
   <div class="brand-logo">
-    <img src="images/exe-learnlogo.png" alt="Exelearn Logo" class="responsive-logo">
-    <span class="header-tagline">Learn anytime and anywhere</span>
+    <i class="fa-solid fa-graduation-cap"></i>
+    <div class="brand-text-container">
+      <span class="brand-name-primary">Exe</span>
+      <span class="brand-tag">Learn</span>
+    </div>
   </div>
   <div class="header-accent"></div>
 </header>
@@ -180,28 +192,19 @@
       </div>
     </section>
 
+    
+
     <!-- Promotional Announcements Carousel Banner -->
     <div class="cashback-banner">
-      <div class="announcement-slider">
-        <div class="announcement-track">
-          <!-- Announcement 4 -->
-          <div class="announcement-item">
-            <i class="fa-solid fa-hand-holding-dollar"></i> Refer a Friend & Earn ₹5,000 Bonus Cash!
-          </div>
-          <!-- Announcement 3 -->
-          <div class="announcement-item">
-            <i class="fa-solid fa-user-graduate"></i> Free 1-on-1 Career Counseling & Mentorship!
-          </div>
-          <!-- Announcement 2 -->
-          <div class="announcement-item">
-            <i class="fa-solid fa-bolt"></i> Limited Time Offer: 0% Interest EMI Options!
-          </div>
-          <!-- Announcement 1 -->
-          <div class="announcement-item">
-            <i class="fa-solid fa-gift"></i> Get Rs.10,000 Cash-back on Early Admissions!
-          </div>
-        </div>
-      </div>
+      <div class="announcement-wrapper">
+  <div class="announcement-track">
+    <div class="announcement-item"><i class="fa-solid fa-hand-holding-dollar"></i> Refer a Friend & Earn ₹5,000 Bonus Cash!</div>
+    <div class="announcement-item"><i class="fa-solid fa-user-graduate"></i> Free 1-on-1 Career Counseling & Mentorship!</div>
+    <div class="announcement-item"><i class="fa-solid fa-bolt"></i> Limited Time Offer: 0% Interest EMI Options!</div>
+    <div class="announcement-item"><i class="fa-solid fa-gift"></i> Get Rs.10,000 Cash-back on Early Admissions!</div>
+     <div class="announcement-item"><i class="fa-solid fa-hand-holding-dollar"></i> Refer a Friend & Earn ₹5,000 Bonus Cash!</div>
+  </div>
+</div>
     </div>
 
     <div id="formModalOverlay" class="form-modal-overlay">

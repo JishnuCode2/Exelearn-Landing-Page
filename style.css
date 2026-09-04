@@ -410,22 +410,20 @@ body {
   width: 100%;
   overflow: hidden;
 }
+/* Container to clip extra items */
+.announcement-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
 
 .announcement-track {
   display: flex;
-  width: 500%;
-  animation: slideLeftToRight 15s ease-in-out infinite;
-}
-
-/* Pause announcement only on true pointer hover (desktop) */
-@media (hover: hover) {
-  .announcement-track:hover {
-    animation-play-state: paused;
-  }
+  width: 500%; /* 5 items total */
+  animation: slideNext 16s infinite;
 }
 
 .announcement-item {
-  width: 20%;
+  width: 20%; /* Each item takes 1 full screen width (100% / 5) */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -442,13 +440,38 @@ body {
   font-size: 1.2em;
 }
 
-@keyframes slideLeftToRight {
-  0%, 16% { transform: translateX(-80%); }
-  20%, 36% { transform: translateX(-60%); }
-  40%, 56% { transform: translateX(-40%); }
-  60%, 76% { transform: translateX(-20%); }
-  80%, 96% { transform: translateX(0%); }
-  100% { transform: translateX(-80%); }
+@media (hover: hover) {
+  .announcement-track:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* Keyframes moving forward (-0% -> -20% -> -40% -> -60% -> -80%) */
+@keyframes slideNext {
+  /* Item 1 */
+  0%, 20% {
+    transform: translateX(0%);
+  }
+  
+  /* Slide to Item 2 */
+  25%, 45% {
+    transform: translateX(-20%);
+  }
+  
+  /* Slide to Item 3 */
+  50%, 70% {
+    transform: translateX(-40%);
+  }
+  
+  /* Slide to Item 4 */
+  75%, 95% {
+    transform: translateX(-60%);
+  }
+  
+  /* Instant step to clone (matches Item 1 visually) & loop */
+  100% {
+    transform: translateX(-80%);
+  }
 }
 
 /* ==========================================================================
